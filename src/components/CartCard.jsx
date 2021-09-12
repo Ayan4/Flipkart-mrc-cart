@@ -20,6 +20,11 @@ function CartCard({ cartItem }) {
     cartDispatch({ type: "REMOVE", payload: productID });
   };
 
+  const saveHandler = product => {
+    cartDispatch({ type: "ADD_SAVED", payload: product });
+    removeHandler(product.id);
+  };
+
   return (
     <div className="flex border border-black m-2">
       <img className="w-1/5" src={cartItem.pic} alt="" />
@@ -55,7 +60,10 @@ function CartCard({ cartItem }) {
           >
             Remove
           </button>
-          <button className="px-2 border border-gray-400 bg-gray-200 rounded ml-2">
+          <button
+            onClick={() => saveHandler(cartItem)}
+            className="px-2 border border-gray-400 bg-gray-200 rounded ml-2"
+          >
             Save for later
           </button>
         </div>

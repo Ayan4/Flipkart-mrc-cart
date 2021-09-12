@@ -1,5 +1,6 @@
 export const initialState = {
-  cart: []
+  cart: [],
+  saved: []
 };
 
 export const cartReducer = (state, action) => {
@@ -38,6 +39,23 @@ export const cartReducer = (state, action) => {
       return {
         ...state,
         cart: state.cart.filter(item => item.id !== action.payload)
+      };
+
+    case "ADD_SAVED":
+      const foundSavedProduct = state.saved.find(
+        item => item.id === action.payload.id
+      );
+      return {
+        ...state,
+        saved: foundSavedProduct
+          ? state.saved
+          : [...state.saved, action.payload]
+      };
+
+    case "REMOVE_SAVED":
+      return {
+        ...state,
+        saved: state.saved.filter(item => item.id !== action.payload)
       };
 
     default:

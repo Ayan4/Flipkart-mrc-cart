@@ -7,8 +7,8 @@ function TotalCard() {
   const total = cartState.cart.map(item => item.price * item.quantity);
   const discount = cartState.cart.map(item => item.discount);
 
-  const cartTotal = total.reduce((a, b) => a + b);
-  const discountTotal = discount.reduce((a, b) => a + b);
+  const cartTotal = total.reduce((a, b) => a + b, 0);
+  const discountTotal = discount.reduce((a, b) => a + b, 0);
 
   const grandTotal = cartTotal - discountTotal;
 
